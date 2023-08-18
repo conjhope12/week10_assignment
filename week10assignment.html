@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+<!-- 
+    The first div represents my form section of the assignment.
+    >> This includes the text boxes, small dropdown selection menu, and the appropriate button to add to the existing table. 
+-->
+
+    <h1>I have the power!!!!!!!</h1>
+
+<!-- 
+    The first inputs repressents my text boxes.
+
+    The select menu allows me to pick different options from the dropdown menu.
+
+    The button option allows me to add data within the table listed below.
+    >> "event" allows me to to not lose all of my data in the table after I hit the button.
+
+    The table function is blank and needs more parameters to make it functional.
+ -->
+    <div class="my-container">
+        <form class="d-flex">
+            <input type="text" class="form-control" id="name-textbox"/>
+            <input type="text" class="form-control" id="superpower-textbox"/>
+            <select id="number-select">
+                <option>Cool</option>
+                <option>Not Cool</option>
+                <option>Mid</option>
+            </select>
+            <button class="btn btn-secondary flex-grow-1" type="submit" onclick="addToTable(event)">The Power is Yours</button>
+        </form>
+        <table class="table table-striped">
+            <tbody id="items-table"></tbody>
+        </table>
+    </div>
+<!-- 
+    The script function allows me to tie in js into the html file
+
+    The code below will provide the functionality of the table listed above
+
+    The "getElementByID" functions help the form above with adding data into the table.
+
+    "event.preventDefault()" ensures that the button does not refresh the page everytime it is clicked.
+
+    "newRow" allows me to add rows into the table with all of the follow table data.
+    >> "Date.now" allows me to show the time the button was clicked and what date it was clicked as well.
+
+    "appendChild" makes adding new rows on top of older rows and is the child function of the above code within the script.
+
+    "" allows the boxes to go blank after the button has been clicked and a new row has been added.
+ -->
+    <script>
+        let nameTextbox = document.getElementById("name-textbox")
+        let superpowerTextbox = document.getElementById("superpower-textbox")
+        let numberSelect = document.getElementById("number-select")
+        let tableBody = document.querySelector("#items-table")
+
+        const addToTable = (event) => {
+            event.preventDefault()
+
+            let newRow=document.createElement("tr")
+            newRow.innerHTML = `
+                <td>${nameTextbox.value}</td>
+                <td>${superpowerTextbox.value}</td>
+                <td>${numberSelect.value}</td>
+                <td>${new Date(Date.now())}</td>
+            `
+
+            tableBody.appendChild(newRow)
+
+            nameTextbox.value = ""
+            superpowerTextbox.value = ""
+
+        }
+    </script>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="week10assignment.js"></script>
+
+</body>
+</html>
